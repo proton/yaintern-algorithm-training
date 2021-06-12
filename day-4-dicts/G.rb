@@ -16,8 +16,9 @@ lines.each do |line|
   when 'BALANCE'
     puts h.include?(a[1]) ? h[a[1]] : 'ERROR'
   when 'INCOME'
+    prc = a[1].to_i
     h.each do |k, v|
-      h[k] = v * (100 + a[1].to_i) / 100
+      h[k] += v * prc / 100 if v > 0
     end
   end
 end
