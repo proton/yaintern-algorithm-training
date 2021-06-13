@@ -1,33 +1,26 @@
-class Counter < Hash
-  def initialize
-    super(0)
+class Counter < Array
+  def initialize(word)
+    super(123, 0)
+    word.chars.each { |c| self[c.ord] += 1 }
   end
   
-  def inc(key)
-    self[key] += 1
+  def inc(char)
+    self[char.ord] += 1
   end
   
-  def dec(key)
-    self[key] -= 1
-    delete(key) if self[key] == 0
+  def dec(char)
+    self[char.ord] -= 1
   end
-end
-
-def counter(word)
-  h = Counter.new
-  word.chars.each { |c| h[c] += 1 }
-  h
 end
 
 def decrypt(word, letter_sequence)
   answer = 0
   return answer if word.size < letter_sequence.size
   
-  letter_sequence_counter = counter(letter_sequence)
-  word_counter = counter(word[0...(letter_sequence.size - 1)])
+  letter_sequence_counter = Counter.new(letter_sequence)
+  word_counter = Counter.new(word[0...(letter_sequence.size - 1)])
   
   ((letter_sequence.size - 1)...word.size).each do |index|
-    # повыссить счетчик текущего
     word_counter.inc(word[index])
     answer += 1 if word_counter == letter_sequence_counter
     word_counter.dec(word[index - letter_sequence.size + 1])
