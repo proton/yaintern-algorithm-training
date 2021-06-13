@@ -1,15 +1,15 @@
 class Counter < Array
   def initialize(word)
-    super(123, 0)
-    word.chars.each { |c| self[c.ord] += 1 }
+    super(123 - 65, 0)
+    word.chars.each { |c| self[c.ord - 65] += 1 }
   end
   
   def inc(char)
-    self[char.ord] += 1
+    self[char.ord - 65] += 1
   end
   
   def dec(char)
-    self[char.ord] -= 1
+    self[char.ord - 65] -= 1
   end
 end
 
