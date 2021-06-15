@@ -5,7 +5,7 @@ def find_match(n_colours, m_colours)
   best_diff = 1.0/0
   prev_diff = 1.0/0
 
-  while i < n_colours.size && j < m_colours.size
+  while i < n_colours.size
     diff = (n_colours[i] - m_colours[j]).abs
     return [i, j] if diff == 0
     if diff < best_diff
