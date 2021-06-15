@@ -13,7 +13,8 @@ def find_match(n_colours, m_colours)
       best_i, best_j = i, j
     end
 
-    if diff <= prev_diff
+    #p [i, j, n_colours[i], m_colours[j], diff, prev_diff]
+    if diff <= prev_diff && j +1 < m_colours.size
       j += 1
       prev_diff = diff
     else
@@ -25,11 +26,11 @@ def find_match(n_colours, m_colours)
   [best_i, best_j]
 end
 
-
-gets
-n_colours = gets.split.map(&:to_i)
-gets
-m_colours = gets.split.map(&:to_i)
+lines = File.open('input.txt').readlines
+#gets
+n_colours = lines[1].split.map(&:to_i)
+#gets
+m_colours = lines[3].split.map(&:to_i)
 
 i, j = find_match(n_colours, m_colours)
 puts "#{n_colours[i]} #{m_colours[j]}"
