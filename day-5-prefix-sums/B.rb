@@ -5,15 +5,17 @@ def count_cars(cars, k)
   prev_sum = nil
   prev_j = nil
   cars.each_index do |i|
-    j = i
-    sum = 0
-    #els = []
+    if prev_j
+      j = prev_j
+      sum = prev_sum - cars[i-1] - cars[j]
+    else
+      j = i
+      sum = 0
+    end
     loop do
       sum += cars[j]
-      #els << j
       if sum == k
         cnt += 1
-        #p els
         prev_sum = sum
         prev_j = j
         break
@@ -23,10 +25,8 @@ def count_cars(cars, k)
         break
       end
       j += 1
-      if j == cars.size
-        return cnt
-        break
-      end
+
+      return cnt if j == cars.size
     end
   end
 
