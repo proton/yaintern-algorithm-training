@@ -14,11 +14,10 @@ class Counter < Hash
 end
 
 def find_len(colors, k)
-  return k if k == 1 || k == colors.size
+  return [1, k] if k == 1 || k == colors.size
 
   min_length = 1.0/0
   best_ij = []
-
 
   (0..(colors.size - k)).each_with_index do |i| # не имеет смысла итерировать дальше size - k
     cnt = Counter.new
