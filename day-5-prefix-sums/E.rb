@@ -38,7 +38,7 @@ def find_len(colors, k)
       j += 1
       if j == colors.size
         # p [__LINE__, cnt]
-        # return best_ij
+        return best_ij if cnt.size < k
         break
       end
     end
