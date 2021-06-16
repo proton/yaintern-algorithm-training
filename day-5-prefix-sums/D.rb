@@ -1,8 +1,8 @@
 # find all combinations of two nums with diff > r
 def find_cnt(nums, r)
   cnt = 0
+  j = 1
   nums.each_with_index do |num, i|
-    j = i + 1
     while j < nums.size
       num2 = nums[j]
       if num2 - num > r
