@@ -28,16 +28,18 @@ def find_len(colors, k)
     loop do
       color = colors[j]
       cnt[color] += 1
-      #p [__LINE__, i, j, cnt.size, min_length > j - i, min_length, j - i]
+      # p [__LINE__, i, j, cnt.size, min_length > j - i, min_length, j - i]
       if cnt.size == k && min_length > j - i
-        min_length = j - i + 1
+        min_length = j - i
         best_ij = [i + 1, j + 1]
+        # p [:break]
         break
       end
       j += 1
       if j == colors.size
-        #p [__LINE__, cnt]
-        return best_ij
+        # p [__LINE__, cnt]
+        # return best_ij
+        break
       end
     end
   end
