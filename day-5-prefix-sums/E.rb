@@ -7,7 +7,7 @@ class Counter < Hash
     self[key] += 1
   end
   
-  def dec(char)
+  def dec(key)
     self[key] -= 1
     delete(key) if self[key].zero?
   end
@@ -18,27 +18,37 @@ def find_len(colors, k)
 
   min_length = 1.0/0
   best_ij = []
+  prev_j = nil
 
-  (0..(colors.size - k)).each_with_index do |i| # не имеет смысла итерировать дальше size - k
-    cnt = Counter.new
-    color = colors[i]
-    cnt[color] += 1
-
-    j = i + 1
-    loop do
+  cnt = Counter.new
+  (0..(colors.size - k)).each_with_index do |i|
+    if prev_j
+      j = prev_j
+      color = colors[i - 1]
+      cnt.dec(color)
       color = colors[j]
-      cnt[color] += 1
-      # p [__LINE__, i, j, cnt.size, min_length > j - i, min_length, j - i]
-      if cnt.size == k && min_length > j - i
-        min_length = j - i
-        best_ij = [i + 1, j + 1]
-        # p [:break]
+      cnt.dec(color)
+    else
+      cnt = Counter.new
+      color = colors[i]
+      cnt.inc(color)
+      j = i + 1
+    end
+    loop do
+      prev_j = j
+      color = colors[j]
+      cnt.inc(color)
+      if cnt.size == k
+        if min_length > j - i
+          min_length = j - i
+          best_ij = [i + 1, j + 1]
+        end
         break
       end
       j += 1
       if j == colors.size
-        # p [__LINE__, cnt]
         return best_ij if cnt.size < k
+        prev_j = j - 1
         break
       end
     end
