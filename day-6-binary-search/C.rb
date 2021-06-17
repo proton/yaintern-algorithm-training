@@ -13,7 +13,7 @@ end
 lines = File.open('input.txt').readlines
 w, h, n = lines[0].split.map(&:to_i)
 
-r = lbinsearch(0, 10**10) do |x|
+r = lbinsearch(0, 10**20) do |x|
   (x / w) * (x / h) >= n
 end
 
