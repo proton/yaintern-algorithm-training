@@ -19,8 +19,19 @@ end
 
 seqs[0...-1].each_with_index do |seq1, i|
   seqs[(i + 1)..-1].each_with_index do |seq2, j|
-    seq = (seq1 + seq2).sort
-    #p [i, j, seq]
-    p seq[l - 1]
+
+    # seq = (seq1 + seq2).sort
+    # p seq[l - 1]
+    a = b = c = 0
+    while c < l
+      if seq1[a] < seq2[b]
+        p seq1[a] if c == l - 1
+        a += 1
+      else
+        p seq2[b] if c == l - 1
+        b += 1
+      end
+      c += 1
+    end
   end
 end
