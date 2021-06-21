@@ -22,16 +22,22 @@ seqs[0...-1].each_with_index do |seq1, i|
 
     # seq = (seq1 + seq2).sort
     # p seq[l - 1]
-    a = b = c = 0
-    while c < l
-      if seq1[a] < seq2[b]
-        p seq1[a] if c == l - 1
-        a += 1
-      else
-        p seq2[b] if c == l - 1
-        b += 1
+    if seq1.first < seq2.first && seq1.first < seq2.last && seq1.last < seq2.first && seq1.last < seq2.first
+      p seq1.last
+    elsif seq2.first < seq1.first && seq2.first < seq1.last && seq2.last < seq1.first && seq2.last < seq1.first
+      p seq2.last
+    else
+      a = b = c = 0
+      while c < l
+        if seq1[a] < seq2[b]
+          p seq1[a] if c == l - 1
+          a += 1
+        else
+          p seq2[b] if c == l - 1
+          b += 1
+        end
+        c += 1
       end
-      c += 1
     end
   end
 end
