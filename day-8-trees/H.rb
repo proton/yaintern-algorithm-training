@@ -54,7 +54,7 @@ class Tree
   end
 
   def avl_balanced?
-    (left_height - right_height).abs <= 1
+    sorted_nodes.all? { |node| (node.left_height - node.right_height).abs <= 1 }
   end
 
   def greatest
