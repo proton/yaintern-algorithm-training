@@ -2,11 +2,16 @@ lines = File.open('input.txt').readlines
 n, d = lines[0].split.map(&:to_i)
 xs = lines[1].split.map.with_index { |pos, i| [pos.to_i, i] }.sort
 
-current_var = 1
-r[xs[1]] = current_var
-prev_poses = [xs[0]]
-xs[1..-1].each do |x|
-  #
+xs.each_with_index do |x, i|
+  if i == 0
+    x[2] = current_var
+  elsif x[0] > xs[i-1][0] + d
+    current_var = 1
+    x[2] = current_var
+  else
+    # while diff < d
+  end
+  r[x[1]] = x[2]
 end
 p xs
 
